@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.roobtyan.dao.ChoiceMapperCustom">
+    <resultMap id="UserAndGameResultMap" type="com.roobtyan.pojo.User">
+        <id column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <collection property="choiceList" ofType="com.roobtyan.pojo.Choice">
+        <id column="choice_id" property="choiceId"/>
+        <result column="user_id" property="userId"/>
+        <!--<result column="number" property="number"/>-->
+            <collection property="choicedetailList" ofType="com.roobtyan.pojo.Choicedetail" >
+                <id column="choicedetail_id" property="choicedetailId"/>
+                <result column="g_id" property="gId"/>
+                <!--<result column="g_num" property="gNum"/>-->
+                <result column="choice_id" property="choiceId"/>
+                <association property="game" javaType="com.roobtyan.pojo.Game">
+                    <id column="g_id" property="gId"/>
+                    <result column="g_name" property="gName"/>
+                    <!--<result column="g_address" property="gAddress"/>-->
+                </association>
+            </collection>
+        </collection>
+    </resultMap>
+<select id="findUserAndGameResultMap" resultMap="UserAndGameResultMap">
+    SELECT
+      user.user_id,
+      user.user_name,
+      game.g_name
+    FROM
+      choice,
+      user,
+      choicedetail,
+      game
+    WHERE
+      choice.user_id = user.user_id AND choicedetail.choice_id = choice.choice_id AND choicedetail.g_id = game.g_id
+</select>
+</mapper>
