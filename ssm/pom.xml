@@ -31,7 +31,7 @@
     <!--Junit单元测试版本号 -->
     <junit.version>4.11</junit.version>
     <!--Java连接MySQL 版本号-->
-    <mysql-connector-java.version>8.0.11</mysql-connector-java.version>
+    <mysql-connector-java.version>8.0.28</mysql-connector-java.version>
     <!--commons-dbcp版本号-->
     <commons-dbcp.version>1.2.2</commons-dbcp.version>
     <!--shiro版本-->
@@ -274,7 +274,7 @@
           <dependency>
             <groupId> mysql</groupId>
             <artifactId> mysql-connector-java</artifactId>
-            <version> 8.0.11</version>
+            <version> 8.0.28</version>
           </dependency>
           <dependency>
             <groupId>org.mybatis.generator</groupId>
